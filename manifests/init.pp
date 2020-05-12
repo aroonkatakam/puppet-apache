@@ -12,6 +12,9 @@ class apache (
   Enum["running", "stopped"] $service_ensure,
   String $service_name,
   Boolean $service_enable,
+  String $vhosts_dir,
+  String $vhosts_owner,
+  String $vhosts_group,
 ) {
  #contain is used below instead of include like earlier is because contain also manages the order of their  run
   contain apache::install
