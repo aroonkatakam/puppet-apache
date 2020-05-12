@@ -9,11 +9,16 @@ class apache (
   String $install_ensure,
   String $config_path,
   String $config_ensure,
+  Enum["running", "stopped"] $service_ensure,
+  String $service_name,
+  Boolean $service_enable,
 ) {
  #contain is used below instead of include like earlier is because contain also manages the order of their  run
   contain apache::install
   contain apache::config
+  contain apache::service
 
   Class['::apache::install']
   -> Class['::apache::config']
+  ~> Class['::apache::service']
 }
